@@ -6,16 +6,15 @@ X = torch.Tensor([[0, 0], [0, 1], [1, 0], [1, 1]])		# 입력 데이터
 Y = torch.Tensor([[0], [1], [1], [0]])     		# target 값 (= 정답값) for XOR gate
 
 model = nn.Sequential(
-    nn.Linear(2, 2),
+    nn.Linear(2, 3),
     nn.ReLU(),
-    nn.Linear(2, 1),
+    nn.Linear(3, 1),
     nn.Sigmoid()
 ) 
 loss_func = nn.BCELoss()			# binary classification을 위해 BCELoss 사용
 
-num_epochs = 2000				# 반복 횟수 지정
-optimizer = torch.optim.SGD(model.parameters(), lr=0.2)	# 다양한 optimizer 중에서 제일 simple한
-					# SGD (Stochastic Gradient Descent) optimizer 사용
+num_epochs = 2000			# 반복 횟수 지정
+optimizer = torch.optim.SGD(model.parameters(), lr=0.2)	
 
 for epoch in range(num_epochs+1):
     prediction = model(X)		# 순전파 과정
